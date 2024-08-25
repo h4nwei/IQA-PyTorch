@@ -36,7 +36,7 @@ def main():
     parser.add_argument('--test_phase', type=str, default=None, help='phase for benchmark: val/test.')
     parser.add_argument('--save_result_path', type=str, default=None, help='file to save results.')
     parser.add_argument('--update_benchmark', type=str, default=None, help='update benchmark results.')
-    parser.add_argument('--use_gpu', action='store_true', default=False, help='use gpu or not')
+    parser.add_argument('--use_gpu', action='store_true', default=True, help='use gpu or not')
     args = parser.parse_args()
 
     metrics_to_test = []
@@ -90,9 +90,12 @@ def main():
         metric_opts = all_metric_opts[metric_name]['metric_opts']
         metric_mode = all_metric_opts[metric_name]['metric_mode']
         lower_better = all_metric_opts[metric_name].get('lower_better', False)
+        as_loss = False
         if metric_name == 'pieapp':
             lower_better = False    # ground truth score is also lower better for pieapp test set
-        iqa_model = create_metric(metric_name, device=device, metric_mode=metric_mode, **metric_opts)
+        if metric_name == 'compare2score':
+            as_loss = True
+        iqa_model = create_metric(metric_name, as_loss=as_loss, device=device, metric_mode=metric_mode, **metric_opts)
 
         results_row = [metric_name]
         for dataset_name in datasets_to_test:

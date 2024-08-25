@@ -7,7 +7,7 @@ from pyiqa.utils import get_root_logger
 from pyiqa.models.inference_model import InferenceModel
 
 
-def create_metric(metric_name, as_loss=False, device=None, **kwargs):
+def create_metric(metric_name, as_loss=True, device=None, **kwargs):
     assert metric_name in DEFAULT_CONFIGS.keys(), f'Metric {metric_name} not implemented yet.' 
     metric = InferenceModel(metric_name, as_loss=as_loss, device=device, **kwargs)
     logger = get_root_logger()

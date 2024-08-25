@@ -1,10 +1,81 @@
-# live split 1 test
-live-split1:
+# # live split 1 test
+# live-split1:
+#   name: LIVE
+#   type: GeneralFRDataset
+#   dataroot_target: '/data/zhw/iqa_datasets/LIVEIQA_release2'
+#   meta_info_file: '/data/zhw/iqa_datasets/meta_info/meta_info_LIVEIQADataset.csv'
+#   split_file: '/data/zhw/iqa_datasets/meta_info/live_123.pkl'
+#   split_index: 1
+#   phase: val
+#   dmos_max: 100
+#   augment:
+#     hflip: False
+#     resize: 224
+
+live:
   name: LIVE
   type: GeneralFRDataset
-  dataroot_target: './datasets/LIVEIQA_release2'
-  meta_info_file: './datasets/meta_info/meta_info_LIVEIQADataset.csv'
-  split_file: './datasets/meta_info/live_123.pkl'
-  split_index: 1
-  phase: val
-  dmos_max: 100
+  dataroot_target: '/data/zhw/iqa_datasets/LIVEIQA_release2'
+  meta_info_file: '/data/zhw/iqa_datasets/meta_info/meta_info_LIVEIQADataset.csv'
+  mos_range: [1, 100]
+  lower_better: true
+#   augment:
+#     hflip: False
+#     resize: 224
+
+csiq:
+  name: CSIQ
+  type: GeneralFRDataset
+  dataroot_target: /data/zhw/iqa_datasets/CSIQ/dst_imgs
+  dataroot_ref: /data/zhw/iqa_datasets/CSIQ/src_imgs
+  meta_info_file: /data/zhw/iqa_datasets/meta_info/meta_info_CSIQDataset.csv
+  mos_range: [0, 1]
+  lower_better: true
+  # augment:
+  #   hflip: False
+  #   resize: 224
+
+tid2013:
+  name: TID2013
+  type: GeneralFRDataset
+  dataroot_target: /data/zhw/iqa_datasets/tid2013/distorted_images
+  dataroot_ref: /data/zhw/iqa_datasets/tid2013/reference_images
+  meta_info_file: /data/zhw/iqa_datasets/meta_info/meta_info_TID2013Dataset.csv
+  mos_range: [0, 9]
+  lower_better: false
+  # augment:
+  #   hflip: False
+  #   resize: 224 
+
+kadid10k:
+  name: KADID10k
+  type: GeneralFRDataset
+  dataroot_target: '/data/zhw/iqa_datasets/kadid10k/images'
+  meta_info_file: '/data/zhw/iqa_datasets/meta_info/meta_info_KADID10kDataset.csv'
+  mos_range: [1, 5]
+  lower_better: false
+  # augment:
+  #   hflip: False
+  #   resize: 224
+
+spaq:
+  name: SPAQ
+  type: GeneralNRDataset
+  dataroot_target: '/data/zhw/iqa_datasets/SPAQ/TestImage'
+  meta_info_file: '/data/zhw/iqa_datasets/meta_info/meta_info_SPAQDataset.csv'
+  augment:
+    resize: 448
+  mos_range: [0, 100]
+  lower_better: false
+# pipal:
+#   name: PIPAL
+#   type: GeneralFRDataset 
+#   dataroot_target: '/data/zhw/iqa_datasets/PIPAL/Dist_Imgs'
+#   dataroot_ref: '/data/zhw/iqa_datasets/PIPAL/Train_Ref'
+#   meta_info_file: '/data/zhw/iqa_datasets/meta_info/meta_info_PIPALDataset.csv'
+#   split_file: '/data/zhw/iqa_datasets/meta_info/pipal_official.pkl'
+#   mos_range: [0, 1]
+#   lower_better: false 
+  # augment:
+  #   hflip: False
+  #   resize: 224
